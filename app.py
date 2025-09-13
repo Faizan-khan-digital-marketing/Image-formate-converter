@@ -29,9 +29,8 @@ ALLOWED_MIME_TYPES = {
 
 def allowed_file(filename, content_type):
     """Check if the uploaded file is allowed"""
-    return ('.' in filename and 
-            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS and
-            content_type in ALLOWED_MIME_TYPES)
+    # Just check the file extension, let Pillow validate the actual content
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_file_extension(format_type):
     """Get the appropriate file extension for the format"""
